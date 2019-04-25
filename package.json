@@ -1,0 +1,68 @@
+{
+	"name": "sqf-complete",
+	"displayName": "sqf-complete",
+	"description": "An extension to use attempt to provide a complete sqf development environment in vscode, including linting, formatting, debugging and emulation",
+	"version": "0.0.1",
+	"publisher": "billw",
+	"categories": [
+		"Linters",
+		"Formatters",
+		"Debuggers",
+		"Programming Languages",
+		"Snippets"
+	],
+	"license": "SEE LICENSE IN LICENSE.txt",
+	// "homepage": "https://github.com/hoovercj/vscode-ruby-linter",
+	// "repository": {
+	// 	"type": "git",
+	// 	"url": "https://github.com/hoovercj/vscode-ruby-linter.git"
+	// },
+	"engines": {
+		"vscode": "^1.31.0"
+	},
+	"activationEvents": [
+		"onLanguage:sqf"
+	],
+	"main": "./out/src/extension",
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install"
+	},
+	"devDependencies": {
+		"typescript": "^1.8.10",
+		"vscode": "^0.11.12"
+	},
+	"contributes": {
+		"languages": [
+			{
+				"id": "sqf",
+				"aliases": [
+					"SQF"
+				],
+				"extensions": [
+					"sqf"
+				]
+			}
+		],
+		"configuration": {
+			"properties": {
+				"sqf.vm.executablePath": {
+					"type": "string",
+					"default": "sqfvm.exe",
+					"description": "Points to the sqfvm exectuable."
+				},
+				"sqf.linter.run": {
+					"type": "string",
+					"enum": [
+						"onSave",
+						"onType",
+						"off"
+					],
+					"default": "onType",
+					"description": "Whether the linter is run on save or on type or disabled."
+				}
+			}
+		}
+	}
+}
